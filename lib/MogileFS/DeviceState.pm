@@ -25,6 +25,11 @@ my $singleton = {
         read => 1,
         monitor => 1,
     }),
+    'writeonly' => bless({
+        write => 1,
+        monitor => 1,
+        new_files => 1,
+    }),
     'drain' => bless({
         read => 1,
         write => 1,
