@@ -26,6 +26,7 @@ my $singleton = {
         monitor => 1,
     }),
     'writeonly' => bless({
+        writeonly => 1,
         write => 1,
         monitor => 1,
         new_files => 1,
@@ -47,6 +48,7 @@ sub of_string {
 sub should_drain      { $_[0]->{drain}     }
 sub can_delete_from   { $_[0]->{write}     }
 sub can_read_from     { $_[0]->{read}      }
+sub is_writeonly     { $_[0]->{writeonly} }
 sub should_get_new_files { $_[0]->{new_files} }
 sub should_get_repl_files { $_[0]->{new_files} }
 sub should_have_files { ! ($_[0]->{drain} || $_[0]->{dead}) }
@@ -55,7 +57,6 @@ sub should_monitor    { $_[0]->{monitor}   }
 # named inconveniently so it's not taken to mean equalling string
 # "dead"
 sub is_perm_dead      { $_[0]->{dead}   }
-
 sub should_wake_reaper { $_[0]->{dead}   }
 
 sub should_fsck_search_on {
