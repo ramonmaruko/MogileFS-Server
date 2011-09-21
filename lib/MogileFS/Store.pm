@@ -19,7 +19,8 @@ use List::Util ();
 # 13: modifies 'server_settings.value' to TEXT for wider values
 #     also adds a TEXT 'arg' column to file_to_queue for passing arguments
 # 14: modifies 'device' mb_total, mb_used to INT for devs > 16TB
-use constant SCHEMA_VERSION => 14;
+# 15: adds 'writeonly' device status
+use constant SCHEMA_VERSION => 15;
 
 sub new {
     my ($class) = @_;
@@ -433,6 +434,7 @@ sub setup_database {
     $sto->upgrade_add_device_weight;
     $sto->upgrade_add_device_readonly;
     $sto->upgrade_add_device_drain;
+    $sto->upgrade_add_device_writeonly;
     $sto->upgrade_add_class_replpolicy;
     $sto->upgrade_modify_server_settings_value;
     $sto->upgrade_add_file_to_queue_arg;
