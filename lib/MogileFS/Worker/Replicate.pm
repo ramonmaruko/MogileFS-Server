@@ -375,7 +375,7 @@ sub replicate {
         if ($d->dstate->should_have_files && ! $mask_devids->{$devid}) {
             push @on_devs_tellpol, $d;
         }
-        if ($d->dstate->is_replicateonly || $d->dstate->can_read_from) {
+        if ($d->dstate->can_read_from) {
             push @on_up_devid, $devid;
         }
     }
