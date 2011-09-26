@@ -373,10 +373,10 @@ sub upgrade_add_device_drain {
     }
 }
 
-sub upgrade_add_device_writeonly {
+sub upgrade_add_device_replicateonly {
     my $self = shift;
-    unless ($self->column_type("device", "status") =~ /writeonly/) {
-        $self->dowell("ALTER TABLE device MODIFY COLUMN status ENUM('alive', 'dead', 'down', 'readonly', 'writeonly', 'drain')");
+    unless ($self->column_type("device", "status") =~ /replicateonly/) {
+        $self->dowell("ALTER TABLE device MODIFY COLUMN status ENUM('alive', 'dead', 'down', 'readonly', 'replicateonly', 'drain')");
     }
 }
 
